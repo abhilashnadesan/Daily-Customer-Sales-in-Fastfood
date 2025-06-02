@@ -14,13 +14,17 @@ A data pipeline to analyze daily fast-food customer sales, generate insights, an
 - Top 10 ordered items  
 - Order type distribution by gender  
 
-## Architecture
-![architecture](architecture.png)
+## Data Pipeline Architecture
+![Data Pipeline Diagram](data_pipeline_architecture.png)
 
-## Tools Used
-- Python (Pandas, Matplotlib, Seaborn)  
-- SQLite  
-- Jupyter Notebook  
+**Key Layers:**
+1. **Data Source**: CSV files from Kaggle
+2. **Processing**: Pandas ETL
+3. **Storage**: SQLite (sales_data.db)
+4. **Automation**: Cron/Airflow (with email alerts)
+5. **Visualization**: Matplotlib/Seaborn
+6. **Containerization**: Docker
+7. **Deployment**: GitHub Pages/Streamlit
 
 ## Email Alerts Setup
 
@@ -41,21 +45,9 @@ You can test sending an email alert by running the following command in your pro
 ```bash
 python3 email_notifier.py "Test Alert" "This is a test email from the fastfood ETL pipeline."
 
-Just **replace the placeholder emails and passwords** with your real info in `.env`, and add this full README.md text to your README file.
-
-Want me to help you save this as a file?
 
 
-# Daily Fastfood Sales Analysis
 
-## Data Pipeline Architecture
-![Data Pipeline Diagram](data_pipeline_architecture.png)
 
-**Key Layers:**
-1. **Data Source**: CSV files from Kaggle
-2. **Processing**: Pandas ETL
-3. **Storage**: SQLite (sales_data.db)
-4. **Automation**: Cron/Airflow (with email alerts)
-5. **Visualization**: Matplotlib/Seaborn
-6. **Containerization**: Docker
-7. **Deployment**: GitHub Pages/Streamlit
+
+
