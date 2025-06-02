@@ -1,0 +1,11 @@
+
+
+#!/bin/bash
+# Navigate to project directory
+cd "/Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project"
+
+# Run ETL and analysis
+python3 etl_analysis.py
+
+# Send email alert
+python3 email_notifier.py "Pipeline completed" "ETL finished at $(date)"

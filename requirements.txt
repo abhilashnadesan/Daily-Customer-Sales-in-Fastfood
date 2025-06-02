@@ -2,6 +2,5 @@ pandas
 matplotlib
 seaborn
 jupyter
-sqlite3  # Note: Built-in, but can stay for reference
 python-dotenv
 
