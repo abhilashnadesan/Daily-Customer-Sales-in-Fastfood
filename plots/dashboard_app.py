@@ -1,13 +1,14 @@
-# dashboard_app.py
-
 import streamlit as st
 from PIL import Image
 import os
 
 st.title("Daily Fastfood Project Dashboard")
 
-# Folder containing the plots
-image_folder = "/Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project/plots"
+# Get the folder where this script is running
+BASE_DIR = os.path.dirname(__file__)
+
+# Folder containing the plots (relative path)
+image_folder = BASE_DIR  # since images are in the same folder as dashboard_app.py
 
 # List of image files
 image_files = [
@@ -23,3 +24,4 @@ for image_file in image_files:
     st.subheader(image_file.replace("_", " ").replace(".png", "").title())
     img = Image.open(image_path)
     st.image(img, use_column_width=True)
+
