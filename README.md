@@ -25,6 +25,7 @@ A data pipeline to analyze daily fast-food customer sales, generate insights, an
 5. **Visualization**: Matplotlib/Seaborn
 6. **Containerization**: Docker
 7. **Deployment**: GitHub Pages/Streamlit
+8. **Machine Learning Model:** A simple classification model built with Python (Random Forest).
 
 ## Email Alerts Setup
 
