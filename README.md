@@ -1,6 +1,6 @@
 # Daily Fastfood Sales Analysis
 
-A data pipeline to analyze daily fast-food customer sales, generate insights, and visualize trends using Python, SQLite, and Jupyter.
+“The project uses fast food sales data to analyze customer behavior by time of day, gender, and item popularity. It helps a fast food chain understand peak sales hours, best-selling items, and preferred order types for each demographic segment.”
 
 ## How to Run
 1. Clone the repo  
