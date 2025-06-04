@@ -1,18 +1,7 @@
 # Daily Fastfood Sales Analysis
 
 “The project uses fast food sales data to analyze customer behavior by time of day, gender, and item popularity. It helps a fast food chain understand peak sales hours, best-selling items, and preferred order types for each demographic segment.”
-
-## How to Run
-1. Clone the repo  
-2. Install dependencies: `pip install -r requirements.txt`  
-3. Start Jupyter: `jupyter notebook`  
-4. Open `notebooks/etl_analysis.ipynb`  
-
-## Visualizations
-- Total sales by outlet  
-- Sales by day and hour  
-- Top 10 ordered items  
-- Order type distribution by gender  
+ 
 
 ## Data Pipeline Architecture
 ![Data Pipeline Diagram](data_pipeline_architecture.png)
@@ -34,68 +23,126 @@ To enable email notifications for ETL pipeline success/failure, configure your e
 EMAIL_SERVER=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USER=abhilashnadesan66@gmail.com
-EMAIL_PASS=uhffsuavjrzycgpa
-EMAIL_TO=abhilashnadesan66@gmail.com,another@example.com
+EMAIL_PASS=xxxxxxxxxx
+EMAIL_TO=abhilashnadesan66@gmail.com
 
 **Note:** Use an App Password for `EMAIL_PASS` if using Gmail with 2FA enabled.
 
-### Testing Email Notifications
 
-You can test sending an email alert by running the following command in your project directory:
+## Step-by-Step Guide
 
-```bash
-python3 email_notifier.py "Test Alert" "This is a test email from the fastfood ETL pipeline."
+###  Step 1: Data Collection
 
+We start by placing your **raw sales CSV file** inside the `/data/raw/` folder.  
+This file should include info like order ID, item name, order time, gender, and order type.
 
-Core Objective
-A data pipeline that transforms raw fast-food sales data into actionable insights, revealing:
+Example in Python:
+```python
+import pandas as pd
+df = pd.read_csv("data/raw/sales_data.csv")
 
-Peak sales periods (Best/worst times for staffing)
+ Step 2: Data Cleaning and Preparation
+Before we use the data, we clean it:
 
-Top-selling items (Menu optimization)
+Remove columns we don’t need
+Fix column names (e.g., lowercase, no spaces)
+Drop rows with missing data
+Add helpful new columns:
+hour: time of the order (e.g., 15 for 3 PM)
+day_of_week: Monday, Tuesday, etc.
+date: just the date (no time)
+The cleaned data is saved in /data/processed/.
 
-Customer behavior (Gender-based preferences, order patterns)
+🗄️ Step 3: Data Storage in Database
 
-Technical Stack
-Languages: Python (77.4%), JavaScript (19.9%)
+We store the clean data in a SQLite database. This makes it easier and faster to work with later.
 
-Data Tools:
+Example:
 
-ETL: Pandas (cleaning), SQLite (storage)
+import sqlite3
+conn = sqlite3.connect("db/sales_data.db")
+df.to_sql("fastfood_sales", conn, if_exists="replace", index=False)
+conn.close()
+The database file is saved in the /db/ folder.
 
-Automation: Cron/Airflow (scheduled jobs + email alerts)
+⚙️ Step 4: Workflow Automation
 
-Visualization: Matplotlib/Seaborn (static charts), Plotly (interactive dashboards)
+No need to run everything by hand! We automate the whole pipeline using:
 
-Infrastructure:
+A shell script: run_pipeline.sh
+A cron job to run daily/hourly (you can set this on your machine)
+(Optional) Use Apache Airflow for better scheduling and UI
+Email alerts notify you when the job succeeds or fails
 
-Containerization: Docker (consistent environments)
+📊 Step 5: Data Analysis and Visualization
 
-Deployment: Streamlit (web apps), GitHub Pages (documentation)
+Now the fun part — we create 4 visuals that show key insights:
 
-Key Features
-Automated Pipeline:
+🕒 Sales by time of day
+👩‍🍳 Order types by gender
+🍔 Top 10 best-selling items
+📅 Sales trends by day
+All charts are saved inside /visuals/ and are also viewable on the dashboard.
 
-Scheduled data pulls → Cleaning → Database updates → Email alerts for failures.
+🤖 Step 6: Machine Learning (Bonus)
 
-Dynamic Visuals:
+We add a machine learning model to predict how a customer placed the order.
 
-Hourly sales heatmaps, item popularity trends, demographic breakdowns.
+Model: Random Forest Classifier
+Features used: Gender, Time of order, etc.
+It predicts: Online vs In-Person order
+A fake (synthetic) dataset is used for training/testing
+You get an accuracy score to see how well it works
 
-Scalable Design:
+🌐 Step 7: Streamlit Dashboard
 
-Dockerized for easy replication; Jupyter notebooks for iterative analysis.
+We’ve built a simple dashboard with Streamlit so you can explore:
 
-Business Impact
-Reduce Waste: Predict ingredient needs using sales patterns.
+The 4 charts
+A summary of sales data
+The machine learning prediction and accuracy
+To run the dashboard:
 
-Boost Revenue: Highlight underperforming items for promotions.
+streamlit run app.py
+This will open in your browser.
 
-Staff Optimization: Align shifts with peak order volumes.
+🐳 Step 8: Docker Containerization (Optional)
 
-Example Insight:
-"The 7–9 AM coffee surge (32% of morning sales) suggests adding breakfast combos to increase average order value."
+Don’t want to install Python and libraries? No problem.
 
+Use Docker to run everything inside a container:
+
+docker build -t fastfood-pipeline .
+docker run -it --rm fastfood-pipeline
+Works the same on any computer!
+
+📦 Project Structure
+
+Here’s what each folder or file is used for:
+
+Path / File	Description
+data/raw/	Put your original sales CSV here
+data/processed/	Cleaned data is saved here
+db/	Contains the SQLite database
+visuals/	Stores the 4 charts made from the data
+scripts/	All the Python code: ETL, visuals, email, ML
+run_pipeline.sh	Script to run the full process
+Dockerfile	Builds a Docker container
+app.py	The Streamlit dashboard code
+✅ Quick Start Instructions
+
+Put your CSV file in data/raw/
+Run everything with:
+bash run_pipeline.sh
+Check your 4 visuals in visuals/
+Start the dashboard:
+streamlit run app.py
+Set up a cron job or use Docker if you prefer automation
+Watch for email alerts when the job runs
+📧 Stay in Touch
+
+Made by: Abhilash Nadesan
+Email: abhilash.nadesan@euruni.edu
 
 
 
