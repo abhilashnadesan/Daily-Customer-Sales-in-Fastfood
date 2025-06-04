@@ -23,5 +23,6 @@ for image_file in image_files:
     image_path = os.path.join(image_folder, image_file)
     st.subheader(image_file.replace("_", " ").replace(".png", "").title())
     img = Image.open(image_path)
-    st.image(img, use_column_width=True)
+   st.image(your_image, use_container_width=True)
+
 
