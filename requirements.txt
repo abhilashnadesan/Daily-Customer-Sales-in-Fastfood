@@ -4,4 +4,7 @@ seaborn
 jupyter
 python-dotenv
 streamlit
+scikit-learn
+joblib
+
 

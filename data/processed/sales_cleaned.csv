@@ -1,0 +1,16 @@
+gender,hour,order_type
+0,9,Online
+1,14,In-Person
+0,11,Online
+1,19,In-Person
+0,20,Online
+1,8,Online
+1,17,In-Person
+0,12,In-Person
+0,21,Online
+1,13,In-Person
+1,18,Online
+0,10,Online
+1,16,In-Person
+0,22,Online
+1,7,In-Person
