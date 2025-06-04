@@ -46,7 +46,54 @@ You can test sending an email alert by running the following command in your pro
 python3 email_notifier.py "Test Alert" "This is a test email from the fastfood ETL pipeline."
 
 
+Core Objective
+A data pipeline that transforms raw fast-food sales data into actionable insights, revealing:
 
+Peak sales periods (Best/worst times for staffing)
+
+Top-selling items (Menu optimization)
+
+Customer behavior (Gender-based preferences, order patterns)
+
+Technical Stack
+Languages: Python (77.4%), JavaScript (19.9%)
+
+Data Tools:
+
+ETL: Pandas (cleaning), SQLite (storage)
+
+Automation: Cron/Airflow (scheduled jobs + email alerts)
+
+Visualization: Matplotlib/Seaborn (static charts), Plotly (interactive dashboards)
+
+Infrastructure:
+
+Containerization: Docker (consistent environments)
+
+Deployment: Streamlit (web apps), GitHub Pages (documentation)
+
+Key Features
+Automated Pipeline:
+
+Scheduled data pulls → Cleaning → Database updates → Email alerts for failures.
+
+Dynamic Visuals:
+
+Hourly sales heatmaps, item popularity trends, demographic breakdowns.
+
+Scalable Design:
+
+Dockerized for easy replication; Jupyter notebooks for iterative analysis.
+
+Business Impact
+Reduce Waste: Predict ingredient needs using sales patterns.
+
+Boost Revenue: Highlight underperforming items for promotions.
+
+Staff Optimization: Align shifts with peak order volumes.
+
+Example Insight:
+"The 7–9 AM coffee surge (32% of morning sales) suggests adding breakfast combos to increase average order value."
 
 
 
