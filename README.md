@@ -145,5 +145,5 @@ Watch for email alerts when the job runs
 Made by: Abhilash Nadesan
 Email: abhilash.nadesan@euruni.edu
 
-Note: Even though the project could use public APIs, I decided to work with an open CSV dataset instead. This made it easier to build a full ETL pipeline, connect to a database, add machine learning predictions, and set everything up with Docker—all on my local machine. If needed, I could later switch to using an API with authentication using a .env file."
+Note:"I used a CSV dataset instead of a public API so I could focus on building a full local pipeline—ETL, database, ML, and Docker. It can be  extended later with an API and .env for auth."
 
