@@ -1,6 +1,7 @@
 # Daily Fastfood Sales Analysis
 
 “The project uses fast food sales data to analyze customer behavior by time of day, gender, and item popularity. It helps a fast food chain understand peak sales hours, best-selling items, and preferred order types for each demographic segment.”
+
  
 
 ## Data Pipeline Architecture
@@ -144,5 +145,5 @@ Watch for email alerts when the job runs
 Made by: Abhilash Nadesan
 Email: abhilash.nadesan@euruni.edu
 
-
+Note: Even though the project could use public APIs, I decided to work with an open CSV dataset instead. This made it easier to build a full ETL pipeline, connect to a database, add machine learning predictions, and set everything up with Docker—all on my local machine. If needed, I could later switch to using an API with authentication using a .env file."
 
