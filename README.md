@@ -1,4 +1,4 @@
-# Daily Fastfood Sales Analysis
+# daily-customer-sales-in-fast-food-outlets  Analysis
 
 “The project uses fast food sales data to analyze customer behavior by time of day, gender, and item popularity. It helps a fast food chain understand peak sales hours, best-selling items, and preferred order types for each demographic segment.”
 
@@ -31,6 +31,8 @@ EMAIL_TO=abhilashnadesan66@gmail.com
 
 
 # Step-by-Step Guide
+
+Data Set from  https://www.kaggle.com/datasets/dennisnyerere/daily-customer-sales-in-fast-food-outlets 
 
 ## Project Directory Setup
 cd "/Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project"
