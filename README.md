@@ -214,7 +214,7 @@ airflow scheduler
 •	Toggle it ON to activate daily run.
 "This gives a visual interface for managing the pipeline. I can turn it on, check logs, and run manually from the Airflow dashboard."
  
-## Section 10: Deployment to GitHub + Render Cloud
+## Section 10: Deployment to GitHub 
 •	Code pushed to GitHub repo 
 •	Visuals and notebook added
 •	Render Cloud used to host the app online
