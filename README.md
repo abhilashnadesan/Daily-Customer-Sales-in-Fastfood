@@ -191,10 +191,23 @@ Model Accuracy: 1.00
 Predictions: [1 0 0]
 Actual:      [1 0 0]
 
-"This model predicts how a customer will order: 0 = Online, 1 = In-Person. It uses only two things: gender and hour of the day.
-For example:
-•	A male (1) at 6PM (hour=18) is predicted to order In-Person (1).
-•	A female (0) at 10AM (hour=10) might be predicted as Online (0).
+This model tries to guess how someone will order food —
+either Online or In-Person.
+
+It uses 2 things to make a guess:
+
+Gender — Is the person a man or a woman?
+
+Time — What time of day are they ordering?
+
+ Simple Examples
+A man ordering at 6 PM (evening)
+→ The model might say: "He'll order In-Person."
+
+A woman ordering at 10 AM (morning)
+→ The model might say: "She'll order Online."
+
+
 This is useful if the company wants to prepare stock differently for morning vs night orders or plan staff based on behavior. The model performed very well with 100% accuracy in the test data."
  
 ## Section 8: Docker Container
