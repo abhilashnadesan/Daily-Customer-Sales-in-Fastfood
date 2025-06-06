@@ -1,0 +1,49 @@
+gender,hour,order_type,location,payment_method,food_item
+0,9,Online,New York,Credit Card,Burger
+1,14,In-Person,Los Angeles,Cash,Pizza
+0,11,Online,Chicago,Debit Card,Salad
+1,19,In-Person,Houston,Cash,Sandwich
+0,20,Online,Phoenix,Credit Card,Pasta
+1,8,Online,Philadelphia,Debit Card,Burger
+1,17,In-Person,San Antonio,Cash,Pizza
+0,12,In-Person,San Diego,Credit Card,Salad
+0,21,Online,Dallas,Debit Card,Sandwich
+1,13,In-Person,San Jose,Cash,Pasta
+1,18,Online,Austin,Credit Card,Burger
+0,10,Online,Jacksonville,Debit Card,Pizza
+1,16,In-Person,Fort Worth,Cash,Salad
+0,22,Online,Columbus,Credit Card,Sandwich
+1,7,In-Person,Charlotte,Cash,Pasta
+0,15,Online,Detroit,Debit Card,Burger
+1,23,In-Person,El Paso,Cash,Pizza
+0,6,Online,Memphis,Credit Card,Salad
+1,12,In-Person,Baltimore,Cash,Sandwich
+0,11,Online,Las Vegas,Debit Card,Pasta
+1,14,Online,Seattle,Credit Card,Burger
+0,10,In-Person,Denver,Cash,Pizza
+1,13,Online,Washington,Debit Card,Salad
+0,16,In-Person,Boston,Cash,Sandwich
+1,9,Online,Nashville,Credit Card,Pasta
+0,18,In-Person,Portland,Debit Card,Burger
+1,20,Online,Oklahoma City,Cash,Pizza
+0,7,In-Person,Las Vegas,Credit Card,Salad
+1,21,Online,Milwaukee,Debit Card,Sandwich
+0,8,In-Person,Albuquerque,Cash,Pasta
+1,22,Online,Tucson,Credit Card,Burger
+0,15,In-Person,Fresno,Debit Card,Pizza
+1,10,Online,Sacramento,Cash,Salad
+0,14,In-Person,Mesa,Credit Card,Sandwich
+1,19,Online,Kansas City,Debit Card,Pasta
+0,11,In-Person,Atlanta,Cash,Burger
+1,13,Online,Long Beach,Credit Card,Pizza
+0,17,In-Person,Colorado Springs,Debit Card,Salad
+1,9,Online,Raleigh,Cash,Sandwich
+0,20,In-Person,Miam,Credit Card,Pasta
+1,6,Online,Virginia Beach,Debit Card,Burger
+0,12,In-Person,Oakland,Cash,Pizza
+1,15,Online,Minneapolis,Credit Card,Salad
+0,22,In-Person,Tulsa,Debit Card,Sandwich
+1,8,Online,Arlington,Cash,Pasta
+0,14,In-Person,New Orleans,Credit Card,Burger
+1,11,Online,Wichita,Debit Card,Pizza
+0,13,In-Person,Cleveland,Cash,Salad

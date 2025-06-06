@@ -1,16 +1,20 @@
-gender,hour,order_type
-0,9,Online
-1,14,In-Person
-0,11,Online
-1,19,In-Person
-0,20,Online
-1,8,Online
-1,17,In-Person
-0,12,In-Person
-0,21,Online
-1,13,In-Person
-1,18,Online
-0,10,Online
-1,16,In-Person
-0,22,Online
-1,7,In-Person
+gender,hour,order_type,location,payment_method
+0,9,Online,New York,Credit Card
+1,14,In-Person,Los Angeles,Cash
+0,11,Online,Chicago,Debit Card
+1,19,In-Person,Houston,Cash
+0,20,Online,Phoenix,Credit Card
+1,8,Online,Philadelphia,Debit Card
+1,17,In-Person,San Antonio,Cash
+0,12,In-Person,San Diego,Credit Card
+0,21,Online,Dallas,Debit Card
+1,13,In-Person,San Jose,Cash
+1,18,Online,Austin,Credit Card
+0,10,Online,Jacksonville,Debit Card
+1,16,In-Person,Fort Worth,Cash
+0,22,Online,Columbus,Credit Card
+1,7,In-Person,Charlotte,Cash
+0,15,Online,Detroit,Debit Card
+1,23,In-Person,El Paso,Cash
+0,6,Online,Memphis,Credit Card
+1,12,In-Person,Baltimore,Cash

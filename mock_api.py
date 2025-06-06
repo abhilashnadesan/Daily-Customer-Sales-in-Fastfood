@@ -6,8 +6,9 @@ import os
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-# Configuration
-API_KEY = os.environ.get('API_KEY', 'default-secret-key')
+# Hardcoded API key (for quick testing ONLY)
+API_KEY = "12345abcde"
+
 DATA_PATH = os.path.join('data', 'processed', 'sales_cleaned.csv')
 
 # Load dataset with error handling
@@ -65,5 +66,5 @@ def get_summary():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5550))
+    port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)

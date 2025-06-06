@@ -3,75 +3,74 @@ import requests
 import pandas as pd
 import plotly.express as px
 
-API_URL = "http://127.0.0.1:5055/api/sales"
+API_URL = "http://127.0.0.1:5000/api/sales"
 API_KEY = "12345abcde"
 
 st.title("Sales Data Viewer")
 
-# Filter input
-item_filter = st.selectbox("Filter by order type", ["All", "Online", "In-Person"])
+order_types = ["All", "Online", "In-Person"]
+selected_order_type = st.selectbox("Filter by order type", order_types)
 
 headers = {"x-api-key": API_KEY}
 params = {}
 
-if item_filter != "All":
-    params['item'] = item_filter
-
-df = pd.DataFrame()  # Initialize empty
+if selected_order_type != "All":
+    params['order_type'] = selected_order_type
 
 try:
-    response = requests.get(API_URL, headers=headers, params=params)
-    if response.status_code == 200:
+    with st.spinner("Loading data..."):
+        response = requests.get(API_URL, headers=headers, params=params)
+        response.raise_for_status()
         data = response.json()
-        if data and "data" in data:
-            df = pd.DataFrame(data["data"])
-            st.write(f"Showing {len(df)} records")
-            st.dataframe(df)
+
+    if data and "data" in data and data["data"]:
+        df = pd.DataFrame(data["data"])
+
+        st.write(f"Showing {len(df)} records")
+        st.dataframe(df)
+
+        # Normalize column names for convenience
+        df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
+
+        if 'order_type' in df.columns:
+            sales_count = df['order_type'].value_counts().reset_index()
+            sales_count.columns = ['order_type', 'count']
+
+            fig = px.bar(
+                sales_count,
+                x='order_type',
+                y='count',
+                title="Number of Sales by Order Type",
+                color='order_type',
+                color_discrete_sequence=px.colors.qualitative.Pastel,
+                labels={"order_type": "Order Type", "count": "Number of Sales"}
+            )
+            st.plotly_chart(fig)
         else:
-            st.write("No data available for this filter.")
+            st.warning("Column 'order_type' not found for plotting.")
     else:
-        st.error(f"API error: {response.status_code} - {response.text}")
-except requests.exceptions.ConnectionError:
-    st.error("Cannot connect to API. Is your Flask server running?")
+        st.info("No sales data available for the selected filter.")
 
-# If data available, show updated graph
-if not df.empty:
-    st.subheader("Sales by Order Type")
+except requests.exceptions.RequestException as e:
+    st.error(f"API request error: {e}")
 
-    # Clean columns for safe use
-    df.columns = [col.strip().lower().replace(" ", "_") for col in df.columns]
-
-    if 'order_type' in df.columns:
-        sales_count = df['order_type'].value_counts().reset_index()
-        sales_count.columns = ['order_type', 'count']
-
-        fig = px.bar(
-            sales_count,
-            x='order_type',
-            y='count',
-            title="Number of Sales by Order Type",
-            color='order_type',
-            color_discrete_sequence=px.colors.qualitative.Pastel
-        )
-        st.plotly_chart(fig)
-    else:
-        st.write("Column 'order_type' not found in data for graph.")
-
-# Show summary stats
 if st.button("Show Summary"):
     summary_url = API_URL.replace('/sales', '/sales/summary')
     try:
-        summary_resp = requests.get(summary_url, headers=headers)
-        if summary_resp.status_code == 200:
+        with st.spinner("Loading summary..."):
+            summary_resp = requests.get(summary_url, headers=headers)
+            summary_resp.raise_for_status()
             summary_data = summary_resp.json()
-            st.write("Sales Summary by Order Type:")
-            # summary_data has keys: 'summary' (dict), 'total_orders'
-            summary = summary_data.get("summary", {})
-            total_orders = summary_data.get("total_orders", 0)
+
+        summary = summary_data.get("summary", {})
+        total_orders = summary_data.get("total_orders", 0)
+
+        if summary:
+            st.write("### Sales Summary by Order Type:")
             for order_type, count in summary.items():
                 st.write(f"- {order_type}: {count}")
             st.write(f"**Total Orders:** {total_orders}")
         else:
-            st.error(f"API error: {summary_resp.status_code} - {summary_resp.text}")
-    except requests.exceptions.ConnectionError:
-        st.error("Cannot connect to API.")
+            st.info("No summary data available.")
+    except requests.exceptions.RequestException as e:
+        st.error(f"API request error: {e}")
