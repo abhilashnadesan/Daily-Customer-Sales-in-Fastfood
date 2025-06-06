@@ -150,7 +150,7 @@ if __name__ == "__main__":
 ```
 Step 2: Run the Streamlit App
 ```python
-streamlit run streamlit_app.py
+streamlit run app.py
 Inside streamlit_app.py it fetches API data like this:
 import requests
 import pandas as pd
