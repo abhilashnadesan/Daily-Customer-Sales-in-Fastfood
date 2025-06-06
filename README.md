@@ -159,9 +159,19 @@ response = requests.get("http://localhost:5000/data")
 data = pd.DataFrame(response.json())
 ```
 
-"This app connects to the API running on my computer. It loads live sales data and lets me filter by Online (0) or In-Person (1). Also, 0 means Female and 1 means Male in the gender column.
-Example 1: If I filter by 'Online' and 'Male', I can check how many male customers ordered online. Example 2: I can also filter for time — like seeing which gender orders more in the evening.
-This helps non-technical users explore data easily."
+This app connects to a local API (on my computer) to show live sales data. You can filter the data by how the order was placed — either Online (0) or In-Person (1). In the gender column, 0 means Female and 1 means Male.
+
+## For example:
+
+If I choose 'Online' and 'Male', I can see how many men placed online orders.
+
+I can also filter by time to check when people are ordering — like seeing if women order more in the evening.
+
+Another example: I can compare how many in-person orders were placed by men vs. women in the morning.
+
+Or, I can just explore which time of day has the most total orders, no matter the gender or type.
+
+This app is designed to help anyone — even without technical skills — explore and understand sales trends quickly and easily.""
  
 ## Section 6: Automation + Email Alerts
 A. Run Pipeline Manually
