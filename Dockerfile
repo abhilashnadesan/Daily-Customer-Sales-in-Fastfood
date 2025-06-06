@@ -2,8 +2,14 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install build tools required to compile pandas and other packages
-RUN apt-get update && apt-get install -y build-essential
+# Install system dependencies needed for some Python packages (like pandas)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gcc \
+    libssl-dev \
+    libffi-dev \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 
