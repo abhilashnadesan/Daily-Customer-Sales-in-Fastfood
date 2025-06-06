@@ -214,10 +214,10 @@ airflow scheduler
 •	Toggle it ON to activate daily run.
 "This gives a visual interface for managing the pipeline. I can turn it on, check logs, and run manually from the Airflow dashboard."
  
-## Section 10: Deployment to GitHub + Streamlit Cloud
+## Section 10: Deployment to GitHub + Render Cloud
 •	Code pushed to GitHub repo 
 •	Visuals and notebook added
-•	Streamlit Cloud used to host the app online
+•	Render Cloud used to host the app online
 
 "I deployed my project to GitHub and also hosted my dashboard using Streamlit Cloud. This makes it public and accessible to my professor or team."
  
