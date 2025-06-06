@@ -6,5 +6,7 @@ python-dotenv
 streamlit
 scikit-learn
 joblib
+plotly
+requests
 
 
