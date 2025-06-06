@@ -2,7 +2,7 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install system dependencies needed for some Python packages (like pandas)
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     gcc \
@@ -13,12 +13,11 @@ RUN apt-get update && apt-get install -y \
 
 COPY requirements.txt .
 
-# Upgrade pip before installing requirements
 RUN pip install --upgrade pip
-
 RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python", "etl_analysis.py"]
+# Run your Flask API on port 5055
+CMD ["python", "mock_api.py"]
 
