@@ -7,4 +7,4 @@ scikit-learn
 python-dotenv
 streamlit
 plotly
-
+gunicorn==20.1.0  # Explicit version (recommended)
