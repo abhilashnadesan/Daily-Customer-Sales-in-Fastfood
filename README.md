@@ -217,9 +217,7 @@ airflow scheduler
 ## Section 10: Deployment to GitHub 
 •	Code pushed to GitHub repo 
 •	Visuals and notebook added
-•	Render Cloud used to host the app online
 
-"I deployed my project to GitHub and also hosted my dashboard using Streamlit Cloud. This makes it public and accessible to my professor or team."
  
 
 
