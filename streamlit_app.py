@@ -23,8 +23,8 @@ try:
     response = requests.get(API_URL, headers=headers, params=params)
     if response.status_code == 200:
         data = response.json()
-        if data:
-            df = pd.DataFrame(data)
+        if data and "data" in data:
+            df = pd.DataFrame(data["data"])
             st.write(f"Showing {len(df)} records")
             st.dataframe(df)
         else:
@@ -41,7 +41,6 @@ if not df.empty:
     # Clean columns for safe use
     df.columns = [col.strip().lower().replace(" ", "_") for col in df.columns]
 
-    # Check if 'order_type' or equivalent exists (change to actual column name)
     if 'order_type' in df.columns:
         sales_count = df['order_type'].value_counts().reset_index()
         sales_count.columns = ['order_type', 'count']
@@ -64,11 +63,15 @@ if st.button("Show Summary"):
     try:
         summary_resp = requests.get(summary_url, headers=headers)
         if summary_resp.status_code == 200:
-            summary = summary_resp.json()
+            summary_data = summary_resp.json()
             st.write("Sales Summary by Order Type:")
-            for k, v in summary.items():
-                st.write(f"- {k}: {v}")
+            # summary_data has keys: 'summary' (dict), 'total_orders'
+            summary = summary_data.get("summary", {})
+            total_orders = summary_data.get("total_orders", 0)
+            for order_type, count in summary.items():
+                st.write(f"- {order_type}: {count}")
+            st.write(f"**Total Orders:** {total_orders}")
         else:
-            st.error(f"API error: {summary_resp.status_code}")
+            st.error(f"API error: {summary_resp.status_code} - {summary_resp.text}")
     except requests.exceptions.ConnectionError:
         st.error("Cannot connect to API.")
