@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import pandas as pd
+import plotly.express as px
 
 API_URL = "http://127.0.0.1:5055/api/sales"
 API_KEY = "12345abcde"
@@ -15,6 +16,8 @@ params = {}
 
 if item_filter != "All":
     params['item'] = item_filter
+
+df = pd.DataFrame()  # Initialize empty
 
 try:
     response = requests.get(API_URL, headers=headers, params=params)
@@ -31,6 +34,30 @@ try:
 except requests.exceptions.ConnectionError:
     st.error("Cannot connect to API. Is your Flask server running?")
 
+# If data available, show updated graph
+if not df.empty:
+    st.subheader("Sales by Order Type")
+
+    # Clean columns for safe use
+    df.columns = [col.strip().lower().replace(" ", "_") for col in df.columns]
+
+    # Check if 'order_type' or equivalent exists (change to actual column name)
+    if 'order_type' in df.columns:
+        sales_count = df['order_type'].value_counts().reset_index()
+        sales_count.columns = ['order_type', 'count']
+
+        fig = px.bar(
+            sales_count,
+            x='order_type',
+            y='count',
+            title="Number of Sales by Order Type",
+            color='order_type',
+            color_discrete_sequence=px.colors.qualitative.Pastel
+        )
+        st.plotly_chart(fig)
+    else:
+        st.write("Column 'order_type' not found in data for graph.")
+
 # Show summary stats
 if st.button("Show Summary"):
     summary_url = API_URL.replace('/sales', '/sales/summary')
@@ -45,4 +72,3 @@ if st.button("Show Summary"):
             st.error(f"API error: {summary_resp.status_code}")
     except requests.exceptions.ConnectionError:
         st.error("Cannot connect to API.")
-
