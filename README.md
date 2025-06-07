@@ -42,13 +42,14 @@ Copy
 Edit
 cd "/Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project"
 ## Section 1: Load the Raw Data
-python
+```python
 Copy
 Edit
 import pandas as pd
 
 file_path = "data/raw/sales_data.csv"
 df = pd.read_csv(file_path)
+```
 
 print("Shape of data:", df.shape)
 print(df.head())
@@ -249,7 +250,7 @@ Includes: data files, Streamlit dashboard, visuals, ETL scripts, ML model, and d
 
  GitHub Repo
 
- Summary: What We Learned & Business Insight
+  ## Summary: What We Learned & Business Insight
 This project helps fast food businesses:
 
 Understand what sells the most and when
@@ -264,8 +265,7 @@ Deploy across any system using Docker
 
 Always deliver filtered, clean data in the dashboard, even with complex user filters
 
-It turns raw sales data into something useful for decision-making — helping the business boost profitability, streamline operations, and better understand customer be
-
+It turns raw sales data into something useful for decision-making — helping the business boost profitability, streamline operations, and better understand customer behavior.
  
 
 
