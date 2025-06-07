@@ -1,7 +1,6 @@
 # daily-customer-sales-in-fast-food-outlets  Analysis
 
-“The project uses fast food sales data to analyze customer behavior by time of day, gender, and item popularity. It helps a fast food chain understand peak sales hours, best-selling items, and preferred order types for each demographic segment.”
-
+This project explores and analyzes customer orders from a fast-food outlet. It includes data cleaning, visual insights, a live interactive dashboard, machine learning prediction, and pipeline automation — all wrapped into one deployable solution using Docker and Airflow
  
 
 ## Data Pipeline Architecture
@@ -31,217 +30,241 @@ EMAIL_TO=abhilashnadesan66@gmail.com
 
 
 # Step-by-Step Guide
+Daily Customer Sales in Fast Food Outlets
+This project explores and analyzes customer orders from a fast-food outlet. It includes data cleaning, visual insights, a live interactive dashboard, machine learning prediction, and pipeline automation — all wrapped into one deployable solution using Docker and Airflow.
 
-Data Set from  https://www.kaggle.com/datasets/dennisnyerere/daily-customer-sales-in-fast-food-outlets 
-
-## Project Directory Setup
-cd "/Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project"
+ Dataset Source
+ Kaggle Dataset: Daily Customer Sales in Fast Food
  
+ ## Project Directory
+bash
+Copy
+Edit
+cd "/Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project"
 ## Section 1: Load the Raw Data
-```python
+python
+Copy
+Edit
 import pandas as pd
+
 file_path = "data/raw/sales_data.csv"
 df = pd.read_csv(file_path)
+
 print("Shape of data:", df.shape)
 print(df.head())
-```
-"This loads our sales dataset with all the raw customer orders."
- 
- ## Section 2: Data Cleaning and Feature Engineering
-```python
-df = df.drop(columns=["unnamed:_5", "unnamed:_6"], errors='ignore')
-df.columns = [col.strip().lower().replace(" ", "_") for col in df.columns]
-df = df.dropna()
-df = df.rename(columns={'ordereditem': 'item'})
-when_to_hour = {'Morning': 9, 'Afternoon': 14, 'Evening': 18, 'Night': 21}
-df['hour'] = df['when'].map(when_to_hour)
-df['date'] = pd.to_datetime("2025-05-01")
-df['day_of_week'] = df['date'].dt.day_name()
-df['sale'] = 1
-print(df.head())
-```
-"We removed junk columns, fixed names, filled time info, and added extra fields."
- 
-## Section 3: Store Cleaned Data in SQLite Database
-``` python
+This loads the original customer sales dataset.
+
+## Section 2: Data Cleaning and Feature Engineering
+To prepare the dataset for analysis and visualizations, we cleaned and transformed it:
+
+Cleaning Performed:
+Removed unnecessary columns like unnamed:_5, unnamed:_6
+
+Dropped rows with missing/null values
+
+Standardized all column names to lowercase and replaced spaces with underscores
+
+Renamed ordereditem → item
+
+ New Features Added:
+hour: Converted time-of-day strings (Morning, Afternoon…) to numerical hours (9, 14, 18, 21)
+
+day_of_week: Added using a fixed date to extract weekday names
+
+sale: A value of 1 for each row to help count orders
+
+gender: Transformed numeric codes to readable labels (0 → Female, 1 → Male)
+
+All of this cleaned data is saved to:
+
+bash
+Copy
+Edit
+sales_cleaned.csv
+## Section 3: Store Cleaned Data into SQLite
+python
+Copy
+Edit
 import sqlite3
-db_path = "db/sales_data.db"
-conn = sqlite3.connect(db_path)
+
+conn = sqlite3.connect("db/sales_data.db")
 df.to_sql("fastfood_sales", conn, if_exists="replace", index=False)
 conn.close()
-print("Data saved to SQLite.")
-```
- "Now we store the cleaned data into a database for reuse."
- 
-## Section 4: Visualizations
-A. Items Ordered by Time of Day
-```python
-item_when = df.groupby(['when', 'item']).size().unstack().fillna(0)
-item_when.plot(kind='bar', stacked=True, colormap='tab20', figsize=(12, 6))
-plt.title("Items Ordered by Time of Day")
-plt.ylabel("Number of Orders")
-plt.xlabel("Time of Day")
-plt.xticks(rotation=0)
-plt.tight_layout()
-plt.savefig("visuals/items_by_time_of_day.png")
-plt.show()
-```
-B. Sales by Time of Day
-```python
-sales_by_period = df.groupby('when')['sale'].sum()
-sales_by_period.plot(kind='bar', color='lightgreen', figsize=(8, 5))
-plt.title('Sales by Time of Day')
-plt.xlabel('Time of Day')
-plt.ylabel('Number of Sales')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.savefig("visuals/sales_by_time_of_day.png")
-plt.show()
-```
-C. Order Type by Gender
-```python
-df['gender_label'] = df['gender'].map({1.0: 'Male', 0.0: 'Female'})
-order_type_by_gender = df.groupby(['order_type', 'gender_label']).size().unstack().fillna(0)
-order_type_by_gender.plot(kind='bar', figsize=(8, 5), colormap='viridis')
-plt.title("Order Type Distribution by Gender")
-plt.xlabel("Order Type")
-plt.ylabel("Number of Orders")
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.savefig("visuals/order_type_by_gender.png")
-plt.show()
-```
-D. Top 10 Items
-```python
-top_items = df['item'].value_counts().head(10)
-top_items.plot(kind='bar', color='teal', figsize=(10, 6))
-plt.title('Top 10 Most Ordered Items')
-plt.xlabel('Item')
-plt.ylabel('Number of Orders')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.savefig("visuals/top_10_items.png")
-plt.show()
-```
-"These plots help us understand what sells when, who orders how, and what’s most popular."
- 
-## Section 5: Streamlit Web App + API
-Step 1: Run the Flask API
-```bash
-python3 mock_api.py
-Expected Output in Terminal:
- * Running on http://127.0.0.1:5000/
-Test in Browser: Open http://127.0.0.1:5000/data to see the raw JSON output. This shows all sales in a format your Streamlit app can use.
-mock_api.py example:
-```
-```python
-from flask import Flask, jsonify
-import pandas as pd
+ This allows us to reuse the cleaned dataset for fast queries and consistent app behavior.
 
-app = Flask(__name__)
+## Section 4: Visual Analysis with Plotly (in Streamlit)
+Instead of static plots, we now use interactive Plotly charts in our dashboard (app.py):
 
-@app.route("/data")
-def get_data():
-    df = pd.read_csv("data/processed/sales_cleaned.csv")
-    return df.to_json(orient="records")
+ Key Insights:
+Orders by gender, time of day, and location
 
-if __name__ == "__main__":
-    app.run(debug=True)
-```
-Step 2: Run the Streamlit App
-```python
+Top food items
+
+Payment method preferences
+
+In-person vs online ordering
+
+Order patterns by hour of day
+
+All graphs automatically adjust based on selected filters in the app.
+
+## Section 5: Streamlit Interactive Web App
+You can launch the full interactive dashboard with:
+
+bash
+Copy
+Edit
 streamlit run app.py
-Inside streamlit_app.py it fetches API data like this:
-import requests
-import pandas as pd
+ Key Features:
+Sidebar filters for:
 
-response = requests.get("http://localhost:5000/data")
-data = pd.DataFrame(response.json())
-```
+Gender
 
-This app connects to a local API (on my computer) to show live sales data. You can filter the data by how the order was placed — either Online (0) or In-Person (1). In the gender column, 0 means Female and 1 means Male.
+Order Type
 
-## For example:
+Location
 
-If I choose 'Online' and 'Male', I can see how many men placed online orders.
+Payment Method
 
-I can also filter by time to check when people are ordering — like seeing if women order more in the evening.
+Food Item
 
-Another example: I can compare how many in-person orders were placed by men vs. women in the morning.
+Plots update based on filters
 
-Or, I can just explore which time of day has the most total orders, no matter the gender or type.
+If a combination returns no data, the app intelligently removes one filter at a time until it finds data
 
-This app is designed to help anyone — even without technical skills — explore and understand sales trends quickly and easily.""
- 
+View the filtered table and related graphs directly
+
+💡 The app ensures that you always see data and graphs, even if your selected filter combination has no direct matches.
+
 ## Section 6: Automation + Email Alerts
-A. Run Pipeline Manually
-```python
+The project includes automation and notifications.
+
+ Manual Pipeline Run:
+bash
+Copy
+Edit
 bash run_pipeline.sh
-run_pipeline.sh:
-#!/bin/bash
-cd "/Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project"
-python3 etl_analysis.py
-python3 email_notifier.py "Pipeline completed successfully" "ETL job finished at $(date)"
-```
-B. Set up Cron Job (runs every hour)
-```python
+This script runs:
+
+ETL processing
+
+Email notification after completion
+
+ Email Notification:
+bash
+Copy
+Edit
+python3 email_notifier.py "Pipeline Completed" "ETL job done at $(date)"
+You’ll receive an email like:
+
+ Subject: Pipeline Completed
+ Message: ETL job done at 3:00 PM
+
+⏱ Cron Job Setup (Every Hour):
+bash
+Copy
+Edit
 crontab -e
-```
-Add this:
-0 * * * * /Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project/run_pipeline.sh >> /Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project/logs/pipeline.log 2>&1
-C. Test the Email Alert Manually
-python3 email_notifier.py "Test Subject" "Test Body"
- This sends a test email to confirm email settings are working.
+Add this line:
 
-## "My pipeline runs every hour — at 0 minutes of every hour. After the ETL job completes, an email is sent with success status. If something goes wrong, I’ll get a failure alert.
-Example: At 3:00 PM, the job runs. If it works, I get 'Pipeline Completed Successfully'. If not, I get 'Pipeline Failed' with the error message. This helps monitor everything even if I'm not around."
- 
+bash
+Copy
+Edit
+0 * * * * /path/to/run_pipeline.sh >> /path/to/logs/pipeline.log 2>&1
+This runs the pipeline every hour automatically and sends an alert based on success or failure.
+
 ## Section 7: Machine Learning Model
+We trained a Random Forest Classifier to predict whether an order will be Online or In-Person based on:
+
+Gender
+
+Hour of the day
+
+🧪 Output Example:
+bash
+Copy
+Edit
 python ml_model.py
-Output:
-Model Accuracy: 1.00
-Predictions: [1 0 0]
-Actual:      [1 0 0]
+yaml
+Copy
+Edit
+Best hyperparameters: {'max_depth': None, 'min_samples_leaf': 1, 'min_samples_split': 10, 'n_estimators': 100}
+Model Accuracy: 0.75
 
-This model tries to guess how someone will order food —
-either Online or In-Person.
+Confusion Matrix:
+[[1 0]
+ [1 2]]
 
-It uses 2 things to make a guess:
+Classification Report:
+              precision    recall  f1-score   support
+      Online       0.50      1.00      0.67         1
+   In-Person       1.00      0.67      0.80         3
 
-Gender — Is the person a man or a woman?
+Predictions: [1 0 1 0]
+Actual:      [1 1 1 0]
+🤖 Simple Explanation:
+If a man orders at 6 PM, the model might predict: “In-Person”
 
-Time — What time of day are they ordering?
+If a woman orders at 10 AM, it might predict: “Online”
 
- Simple Examples
-A man ordering at 6 PM (evening)
-→ The model might say: "He'll order In-Person."
+This can help managers prepare inventory and staff ahead of time based on customer behavior.
 
-A woman ordering at 10 AM (morning)
-→ The model might say: "She'll order Online."
-
-
-This is useful if the company wants to prepare stock differently for morning vs night orders or plan staff based on behavior. The model performed very well with 100% accuracy in the test data."
- 
 ## Section 8: Docker Container
-```python
+To run the full pipeline with no environment setup:
+
+bash
+Copy
+Edit
 docker build -t fastfood-pipeline -f Dockerfile .
 docker run -it --rm fastfood-pipeline
-```
- "Docker lets me run this project anywhere, without setup problems. Everything runs inside a container."
- 
-## Section 9: Airflow UI and DAG
+Docker ensures consistency across any machine and deployment.
+
+## Section 9: Airflow UI and DAG (Pipeline Scheduler)
+Launch Airflow to manage and monitor the pipeline:
+
+bash
+Copy
+Edit
 airflow webserver --port 8080
-•	Open browser: http://localhost:8080
-•	Log in using: admin / admin
+Open your browser: http://localhost:8080
+
+Default Login:
+
+Username: admin
+
+Password: admin
+
 Then run:
+
+bash
+Copy
+Edit
 airflow scheduler
-•	DAG fastfood_sales will appear in the list.
-•	Toggle it ON to activate daily run.
-"This gives a visual interface for managing the pipeline. I can turn it on, check logs, and run manually from the Airflow dashboard."
- 
-## Section 10: Deployment to GitHub 
-•	Code pushed to GitHub repo 
-•	Visuals and notebook added
+The fastfood_sales DAG will appear. Toggle it ON to start scheduled runs.
+
+## Section 10: Deployment to GitHub
+All code is pushed to GitHub
+
+Includes: data files, Streamlit dashboard, visuals, ETL scripts, ML model, and documentation
+
+ GitHub Repo
+
+ Summary: What We Learned & Business Insight
+This project helps fast food businesses:
+
+Understand what sells the most and when
+
+See how gender, location, and payment method affect orders
+
+Predict order type to prepare staffing and inventory
+
+Use email alerts and Airflow to track pipeline status
+
+Deploy across any system using Docker
+
+Always deliver filtered, clean data in the dashboard, even with complex user filters
+
+It turns raw sales data into something useful for decision-making — helping the business boost profitability, streamline operations, and better understand customer be
 
  
 
