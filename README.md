@@ -135,7 +135,7 @@ If a combination returns no data, the app intelligently removes one filter at a 
 
 View the filtered table and related graphs directly
 
-💡 The app ensures that you always see data and graphs, even if your selected filter combination has no direct matches.
+ The app ensures that you always see data and graphs, even if your selected filter combination has no direct matches.
 
 ## Section 6: Automation + Email Alerts
 The project includes automation and notifications.
@@ -161,7 +161,7 @@ You’ll receive an email like:
  Subject: Pipeline Completed
  Message: ETL job done at 3:00 PM
 
-⏱ Cron Job Setup (Every Hour):
+ Cron Job Setup (Every Hour):
 bash
 Copy
 Edit
@@ -181,34 +181,49 @@ Gender
 
 Hour of the day
 
-🧪 Output Example:
+ Output Example:
 bash
 Copy
 Edit
+
+To run the model, use the following command:
+```bash
 python ml_model.py
+```
 yaml
 Copy
 Edit
-Best hyperparameters: {'max_depth': None, 'min_samples_leaf': 1, 'min_samples_split': 10, 'n_estimators': 100}
-Model Accuracy: 0.75
+# Order Type Prediction Model
 
-Confusion Matrix:
-[[1 0]
- [1 2]]
+## Model Summary
+We built a machine learning model to predict if an order is **Online (0)** or **In-Person (1)**.
 
-Classification Report:
-              precision    recall  f1-score   support
-      Online       0.50      1.00      0.67         1
-   In-Person       1.00      0.67      0.80         3
+## Best Settings
+- Number of trees: 100  
+- Minimum samples to split a node: 10  
+- Minimum samples per leaf: 1  
+- No limit on tree depth
 
-Predictions: [1 0 1 0]
-Actual:      [1 1 1 0]
-🤖 Simple Explanation:
-If a man orders at 6 PM, the model might predict: “In-Person”
+## Results
+- **Accuracy:** 75% (the model correctly predicted 3 out of 4 orders)  
+- Predictions:
+  - 1 Online order correctly predicted  
+  - 2 In-Person orders correctly predicted  
+  - 1 In-Person order was incorrectly predicted as Online
 
-If a woman orders at 10 AM, it might predict: “Online”
+ ## Simple Example
 
-This can help managers prepare inventory and staff ahead of time based on customer behavior.
+| Order | Actual       | Predicted    | Correct/Wrong |
+|-------|--------------|--------------|---------------|
+| 1     | In-Person (1)| In-Person (1)| Correct       |
+| 2     | Online (0)   | Online (0)   | Correct       |
+| 3     | In-Person (1)| Online (0)   | Wrong         |
+| 4     | Online (0)   | In-Person(1) | Wrong         |
+
+The model achieved 75% accuracy, which is a good start for this demo.
+
+---
+
 
 ## Section 8: Docker Container
 To run the full pipeline with no environment setup:
@@ -216,8 +231,10 @@ To run the full pipeline with no environment setup:
 bash
 Copy
 Edit
+```python
 docker build -t fastfood-pipeline -f Dockerfile .
 docker run -it --rm fastfood-pipeline
+```
 Docker ensures consistency across any machine and deployment.
 
 ## Section 9: Airflow UI and DAG (Pipeline Scheduler)
