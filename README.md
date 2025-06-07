@@ -42,14 +42,14 @@ Copy
 Edit
 cd "/Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project"
 ## Section 1: Load the Raw Data
-```python
+
 Copy
 Edit
 import pandas as pd
 
 file_path = "data/raw/sales_data.csv"
 df = pd.read_csv(file_path)
-```
+
 
 print("Shape of data:", df.shape)
 print(df.head())
