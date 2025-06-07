@@ -115,7 +115,12 @@ You can launch the full interactive dashboard with:
 bash
 Copy
 Edit
+```bash
+python3 mock_api.py
+````
+```python
 streamlit run app.py
+```
  Key Features:
 Sidebar filters for:
 
@@ -144,7 +149,12 @@ The project includes automation and notifications.
 bash
 Copy
 Edit
+```python
 bash run_pipeline.sh
+```
+```python
+airflow standalone
+```
 This script runs:
 
 ETL processing
