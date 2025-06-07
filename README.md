@@ -184,7 +184,30 @@ Edit
 0 * * * * /path/to/run_pipeline.sh >> /path/to/logs/pipeline.log 2>&1
 This runs the pipeline every hour automatically and sends an alert based on success or failure.
 
-## Section 7: Machine Learning Model
+## Section 7: Airflow UI and DAG (Pipeline Scheduler)
+Launch Airflow to manage and monitor the pipeline:
+
+bash
+Copy
+Edit
+airflow webserver --port 8080
+Open your browser: http://localhost:8080
+
+Default Login:
+
+Username: admin
+
+Password: admin
+
+Then run:
+
+bash
+Copy
+Edit
+airflow scheduler
+The fastfood_sales DAG will appear. Toggle it ON to start scheduled runs.
+
+## Section 8: Machine Learning Model
 We trained a Random Forest Classifier to predict whether an order will be Online or In-Person based on:
 
 Gender
@@ -235,7 +258,7 @@ The model achieved 75% accuracy, which is a good start for this demo.
 ---
 
 
-## Section 8: Docker Container
+## Section 9: Docker Container
 To run the full pipeline with no environment setup:
 
 bash
@@ -247,28 +270,6 @@ docker run -it --rm fastfood-pipeline
 ```
 Docker ensures consistency across any machine and deployment.
 
-## Section 9: Airflow UI and DAG (Pipeline Scheduler)
-Launch Airflow to manage and monitor the pipeline:
-
-bash
-Copy
-Edit
-airflow webserver --port 8080
-Open your browser: http://localhost:8080
-
-Default Login:
-
-Username: admin
-
-Password: admin
-
-Then run:
-
-bash
-Copy
-Edit
-airflow scheduler
-The fastfood_sales DAG will appear. Toggle it ON to start scheduled runs.
 
 ## Section 10: Deployment to GitHub
 All code is pushed to GitHub
