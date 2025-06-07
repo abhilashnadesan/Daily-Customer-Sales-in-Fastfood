@@ -41,6 +41,10 @@ bash
 Copy
 Edit
 cd "/Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project"
+```python
+cd "/Users/jenniferabhilash/Desktop/EUBS/Third Semester/daily fastfood project"
+```
+
 ## Section 1: Load the Raw Data
 
 Copy
