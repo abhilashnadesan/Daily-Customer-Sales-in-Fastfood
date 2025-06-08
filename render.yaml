@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: fastfood-dashboard
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run streamlit_app.py --server.port=$PORT --server.enableCORS=false
