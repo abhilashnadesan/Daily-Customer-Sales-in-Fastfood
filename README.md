@@ -8,15 +8,6 @@ This project explores and analyzes customer orders from a fast-food outlet. It i
 ![Workflow Diagram](https://github.com/abhilashnadesan/Daily-Customer-Sales-in-Fastfood/blob/main/Sales%20Fast%20food.png?raw=true)
 
 
-**Key Layers:**
-1. **Data Source**: CSV files from Kaggle
-2. **Processing**: Pandas ETL
-3. **Storage**: SQLite (sales_data.db)
-4. **Automation**: Cron/Airflow (with email alerts)
-5. **Visualization**: Matplotlib/Seaborn
-6. **Containerization**: Docker
-7. **Deployment**: GitHub Pages/Streamlit
-8. **Machine Learning Model:** A simple classification model built with Python (Random Forest).
 
 ## Email Alerts Setup
 
