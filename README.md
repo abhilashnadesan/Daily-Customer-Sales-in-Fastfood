@@ -5,6 +5,8 @@ This project explores and analyzes customer orders from a fast-food outlet. It i
 
 ## Data Pipeline Architecture
 ![Data Pipeline Diagram](data_pipeline_architecture.png)
+![Workflow Diagram](https://github.com/abhilashnadesan/Daily-Customer-Sales-in-Fastfood/blob/main/Sales%20Fast%20food.png?raw=true)
+
 
 **Key Layers:**
 1. **Data Source**: CSV files from Kaggle
