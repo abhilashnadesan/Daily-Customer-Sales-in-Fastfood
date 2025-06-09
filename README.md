@@ -181,6 +181,10 @@ Edit
 0 * * * * /path/to/run_pipeline.sh >> /path/to/logs/pipeline.log 2>&1
 This runs the pipeline every hour automatically and sends an alert based on success or failure.
 
+## Details for Email Alerts
+
+In a fast-food business, it's important to have the latest data to make good decisions, like how much food to prepare or how many staff to schedule. Our ETL pipeline runs every hour to clean and update sales data. But if something goes wrong and no one knows, the business might use old or wrong data. To fix this, we added email alerts. When the pipeline finishes, it sends an email saying "ETL done" or "ETL failed." For example, if the pipeline runs at 2 PM and fails, the manager gets an email right away and can ask the team to fix it. This helps keep everything running smoothly.
+
 ## Section 7: Airflow UI and DAG (Pipeline Scheduler)
 Launch Airflow to manage and monitor the pipeline:
 
