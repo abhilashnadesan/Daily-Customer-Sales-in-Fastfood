@@ -154,15 +154,20 @@ Schedule extra staff during busy hours.
 Stock more burgers/pizza — reduce waste, sell more!
 
 
-## "This data shows where to advertise (top cities), how to sell (online + card payments), and who to target (women). Use it to:
+# Here is the sample Plans - Summary
 
-Run ads in San Francisco/Indianapolis.
+Push ads in top cities
+(San Francisco, Indianapolis, Buffalo)
 
-Launch a ‘Ladies Burger Night’ promo.
+Make online ordering faster
+(Most sales come from apps/websites)
 
-Add Apple Pay.
+Offer discounts for card payments
+(Debit/credit users spend more)
 
-Schedule extra cooks during dinner rush!"
+Bundle burgers/pizza + add staff at busy hours
+(Peak times: mornings, lunch, dinner)
+
 
 
 <img width="936" alt="Screenshot 2025-06-10 at 1 17 30 PM" src="https://github.com/user-attachments/assets/a261e1de-ccf7-41ae-b5db-edcdc83b9648" />
