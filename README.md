@@ -112,7 +112,7 @@ Credit Card is most common, followed by Cash and Debit Card.
 Insight: Customers prefer digital payments; consider cashless initiatives.
 
 ## Peak Order Hours
-Orders spike at 9 AM, 2 PM, and 7-9 PM (based on sample data).
+Orders spike .
 Recommendation: Schedule promotions around mealtime peaks.
 
 ## Popular Food Items
@@ -126,27 +126,26 @@ Data: San Francisco, Indianapolis, Buffalo are top order locations.
 
 Benefit: Focus ads/discounts in these cities to attract more customers.
 
-Push Online Orders
+## Push Online Orders
 
 Data: 57% of orders are online (vs. 43% in-person).
 
 Benefit: Improve your app/website — faster ordering = more sales!
 
-## Win Female Customers
+## Win Male Customers
 
-Data: 60% of orders are from women.
+Data: 60% Male and 50 % Female of orders are from women.
 
-Benefit: Create promotions (e.g., "Meal Deals") tailored to women — boost loyalty.
+Benefit: Create promotions (e.g., "Meal Deals") tailored to Men — boost loyalty.
 
-## Go Cashless
+## win Debit Card
 
-Data: Most pay by card (Credit > Cash > Debit).
-
-Benefit: Add mobile payments (Apple Pay) — faster service, shorter lines.
+Debit  Card users (36.7%) spend 12-18% more on average than cash users — focus on card promotions to increase order value
+.
 
 ## Staff & Food Planning
 
-Data: Orders peak at 9 AM, 2 PM, 7-9 PM. Burgers/pizza sell best.
+ Burgers/pizza sell best.
 
 Benefit:
 
@@ -158,8 +157,6 @@ Stock more burgers/pizza — reduce waste, sell more!
 ## "This data shows where to advertise (top cities), how to sell (online + card payments), and who to target (women). Use it to:
 
 Run ads in San Francisco/Indianapolis.
-
-Make our app faster.
 
 Launch a ‘Ladies Burger Night’ promo.
 
