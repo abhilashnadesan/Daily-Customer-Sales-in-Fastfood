@@ -94,17 +94,49 @@ conn.close()
 Instead of static plots, we now use interactive Plotly charts in our dashboard (app.py):
 
  Key Insights:
-Orders by gender, time of day, and location
+Key Insights from Sales Dashboard:
+## Top Locations
+San Francisco has the highest order volume, followed by Indianapolis and Buffalo.
+Action Point: Focus marketing efforts on top-performing cities.
 
-Top food items
+## Order Type Preference
+Online orders (≈80) significantly outnumber in-person orders (≈60).
+Opportunity: Enhance digital ordering experience to drive more sales.
 
-Payment method preferences
+## Gender Distribution
+Female customers place more orders (≈60) than male customers (≈40).
+Suggestion: Tailor promotions to female demographics.
 
-In-person vs online ordering
+## Payment Methods
+Credit Card is most common, followed by Cash and Debit Card.
+Insight: Customers prefer digital payments; consider cashless initiatives.
 
-Order patterns by hour of day
+## Peak Order Hours
+Orders spike at 9 AM, 2 PM, and 7-9 PM (based on sample data).
+Recommendation: Schedule promotions around mealtime peaks.
 
+## Popular Food Items
+Burgers and Pizza are top sellers across locations.
+Opportunity: Bundle popular items for combo deals.
 All graphs automatically adjust based on selected filters in the app.
+
+```python
+"This data shows where to advertise (top cities), how to sell (online + card payments), and who to target (women). Use it to:
+
+Run ads in San Francisco/Indianapolis.
+
+Make our app faster.
+
+Launch a ‘Ladies Burger Night’ promo.
+
+Add Apple Pay.
+
+Schedule extra cooks during dinner rush!"
+
+```
+<img width="1001" alt="Screenshot 2025-06-10 at 1 17 26 PM" src="https://github.com/user-attachments/assets/2ede85ed-3682-4a98-9dbc-7b7204c5d499" />
+
+
 
 ## Section 5: Streamlit Interactive Web App
 You can launch the full interactive dashboard with:
