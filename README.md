@@ -120,7 +120,7 @@ Burgers and Pizza are top sellers across locations.
 Opportunity: Bundle popular items for combo deals.
 All graphs automatically adjust based on selected filters in the app.
 
-## Target Top Cities
+## Target Top Cities - Based on th below Visualization
 
 Data: San Francisco, Indianapolis, Buffalo are top order locations.
 
