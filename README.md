@@ -189,9 +189,9 @@ Bundle burgers/pizza + add staff at busy hours
 
 Run ads in San Francisco/Indianapolis.
 
-Make our app faster.
+Make  app faster.
 
-Launch a ‘Ladies Burger Night’ promo.
+Launch a ‘Male Burger Night’ promo.
 
 Add Apple Pay.
 
