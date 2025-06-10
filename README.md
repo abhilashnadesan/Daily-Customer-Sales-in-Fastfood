@@ -120,6 +120,68 @@ Burgers and Pizza are top sellers across locations.
 Opportunity: Bundle popular items for combo deals.
 All graphs automatically adjust based on selected filters in the app.
 
+## Target Top Cities
+
+Data: San Francisco, Indianapolis, Buffalo are top order locations.
+
+Benefit: Focus ads/discounts in these cities to attract more customers.
+
+Push Online Orders
+
+Data: 57% of orders are online (vs. 43% in-person).
+
+Benefit: Improve your app/website — faster ordering = more sales!
+
+## Win Female Customers
+
+Data: 60% of orders are from women.
+
+Benefit: Create promotions (e.g., "Meal Deals") tailored to women — boost loyalty.
+
+## Go Cashless
+
+Data: Most pay by card (Credit > Cash > Debit).
+
+Benefit: Add mobile payments (Apple Pay) — faster service, shorter lines.
+
+## Staff & Food Planning
+
+Data: Orders peak at 9 AM, 2 PM, 7-9 PM. Burgers/pizza sell best.
+
+Benefit:
+
+Schedule extra staff during busy hours.
+
+Stock more burgers/pizza — reduce waste, sell more!
+
+
+## "This data shows where to advertise (top cities), how to sell (online + card payments), and who to target (women). Use it to:
+
+Run ads in San Francisco/Indianapolis.
+
+Make our app faster.
+
+Launch a ‘Ladies Burger Night’ promo.
+
+Add Apple Pay.
+
+Schedule extra cooks during dinner rush!"
+
+
+<img width="936" alt="Screenshot 2025-06-10 at 1 17 30 PM" src="https://github.com/user-attachments/assets/a261e1de-ccf7-41ae-b5db-edcdc83b9648" />
+
+<img width="1073" alt="Screenshot 2025-06-10 at 1 17 37 PM" src="https://github.com/user-attachments/assets/3dbd41c2-260e-4e5c-a53d-2cdd0b062808" />
+
+
+<img width="1057" alt="Screenshot 2025-06-10 at 1 17 33 PM" src="https://github.com/user-attachments/assets/644b9066-d135-48b8-86c5-e099f0cff2be" />
+
+<img width="1001" alt="Screenshot 2025-06-10 at 1 17 26 PM" src="https://github.com/user-attachments/assets/a102099e-25c3-487d-b3a9-4d55cb938cc1" />
+
+<img width="1055" alt="Screenshot 2025-06-10 at 1 17 39 PM" src="https://github.com/user-attachments/assets/998cc1eb-0170-4102-b388-69f7e05ff304" />
+
+<img width="1289" alt="Screenshot 2025-06-10 at 1 35 32 PM" src="https://github.com/user-attachments/assets/dd2349e3-83ae-4cf0-8d95-70e9c0fd081e" />
+
+
 ```python
 "This data shows where to advertise (top cities), how to sell (online + card payments), and who to target (women). Use it to:
 
@@ -134,9 +196,6 @@ Add Apple Pay.
 Schedule extra cooks during dinner rush!"
 
 ```
-<img width="1001" alt="Screenshot 2025-06-10 at 1 17 26 PM" src="https://github.com/user-attachments/assets/2ede85ed-3682-4a98-9dbc-7b7204c5d499" />
-
-
 
 ## Section 5: Streamlit Interactive Web App
 You can launch the full interactive dashboard with:
